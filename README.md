@@ -1,2 +1,8 @@
-# Ayyan_Hassan_portfolio
-A personal portfolio exploring technology, design, and the work I’m building along the way.
+# Muhammad Ayyan Hassan — Portfolio Foundation
+
+Week 4 — Empty but Live.
+
+Stack: Next.js + TypeScript  
+Hosting target: Vercel Hobby
+
+This is intentionally a near-blank foundation for the portfolio build week.
