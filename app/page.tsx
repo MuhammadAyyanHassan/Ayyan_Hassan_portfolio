@@ -58,7 +58,13 @@ export default function Home() {
               GitHub
             </a>
             <span>·</span>
-            <a href="mailto:hassan.ayyan.muhammad@gmail.com">Email</a>
+            <a
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=hassan.ayyan.muhammad@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Email
+            </a>
           </div>
         </div>
 
