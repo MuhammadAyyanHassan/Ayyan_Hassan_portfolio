@@ -1,3 +1,5 @@
+import "../globals.css";
+
 export const metadata = {
   title: 'Muhammad Ayyan Hassan',
   description: 'Portfolio',
