@@ -4,7 +4,6 @@
   --burgundy: #6B1F2A;
   --ink: #171717;
   --warm-white: #F7F5F2;
-  --muted: #777;
   --line: #dedad4;
 }
 
@@ -12,17 +11,20 @@
 
 html, body { margin: 0; min-height: 100%; }
 
+html { -webkit-text-size-adjust: 100%; }
+
 body {
   background: var(--warm-white);
   color: var(--ink);
   font-family: "Inter", sans-serif;
+  overflow-x: hidden;
 }
 
 .portfolio {
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  padding: 8vh 2rem;
+  padding: clamp(2.5rem, 8vh, 6rem) clamp(1rem, 4vw, 2rem);
 }
 
 .contact-card {
@@ -52,9 +54,10 @@ body {
 
 .subtitle {
   margin-top: 5px;
-  font-size: 11px;
-  line-height: 1.4;
-  color: #888;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--ink);
+  opacity: 0.7;
   letter-spacing: 0.02em;
 }
 
@@ -62,18 +65,27 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-top: 14px;
-  font-size: 11px;
+  margin-top: 10px;
+  font-size: 12px;
   line-height: 1;
 }
 
 .links a {
-  color: #555;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--ink);
+  opacity: 0.75;
   text-decoration: none;
 }
 
-.links a:hover { color: var(--burgundy); }
-.links span { color: var(--line); }
+.links a:hover,
+.links a:focus-visible {
+  color: var(--burgundy);
+  opacity: 1;
+}
+
+.links span { color: var(--burgundy); opacity: 0.55; }
 
 .divider {
   width: 32px;
@@ -82,7 +94,10 @@ body {
   margin: 4rem 0 2.5rem;
 }
 
-.contact-section { max-width: 560px; }
+.contact-section {
+  width: 100%;
+  max-width: 560px;
+}
 
 .eyebrow {
   color: var(--burgundy);
@@ -94,7 +109,7 @@ body {
 
 h1 {
   margin: 0;
-  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-size: clamp(2.1rem, 8vw, 3.5rem);
   font-weight: 500;
   letter-spacing: -0.035em;
   line-height: 1;
@@ -102,21 +117,24 @@ h1 {
 
 .intro {
   margin: 12px 0 2rem;
-  color: #555;
-  font-size: 13px;
+  color: var(--ink);
+  opacity: 0.78;
+  font-size: 14px;
   line-height: 1.6;
 }
 
 form {
   display: grid;
-  gap: 18px;
+  gap: 20px;
 }
 
 label {
   display: grid;
-  gap: 7px;
-  color: #555;
-  font-size: 11px;
+  gap: 8px;
+  color: var(--ink);
+  opacity: 0.78;
+  font-size: 12px;
+  line-height: 1.4;
   letter-spacing: 0.03em;
 }
 
@@ -127,41 +145,56 @@ textarea {
   border-radius: 0;
   background: transparent;
   color: var(--ink);
-  padding: 11px 12px;
+  padding: 12px;
   font: inherit;
-  font-size: 13px;
+  font-size: 16px;
   outline: none;
 }
 
-input:focus,
-textarea:focus {
-  border-color: var(--burgundy);
+input {
+  min-height: 44px;
 }
 
-textarea { resize: vertical; min-height: 120px; }
+input:focus-visible,
+textarea:focus-visible {
+  border-color: var(--burgundy);
+  outline: 2px solid var(--burgundy);
+  outline-offset: 2px;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 140px;
+}
 
 button {
   justify-self: start;
+  min-height: 44px;
   border: 0;
   border-left: 2px solid var(--burgundy);
   background: var(--ink);
   color: var(--warm-white);
-  padding: 11px 16px;
+  padding: 12px 16px;
   font: inherit;
-  font-size: 12px;
+  font-size: 13px;
   cursor: pointer;
 }
 
-button:hover { background: var(--burgundy); }
+button:hover,
+button:focus-visible { background: var(--burgundy); }
+button:focus-visible { outline: 2px solid var(--burgundy); outline-offset: 2px; }
 button:disabled { cursor: wait; opacity: 0.6; }
 
 .status {
   min-height: 18px;
   color: var(--burgundy);
-  font-size: 11px;
+  font-size: 12px;
+  line-height: 1.5;
 }
 
 @media (max-width: 600px) {
-  .portfolio { padding: 2.5rem 1.5rem 4rem; }
-  .divider { margin-top: 3rem; }
+  .portfolio { padding: 2.5rem 1rem 4rem; }
+  .identity { padding-left: 12px; }
+  .monogram { font-size: 52px; }
+  .divider { margin: 3rem 0 2rem; }
 }
