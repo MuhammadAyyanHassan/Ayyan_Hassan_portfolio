@@ -1,3 +1,6 @@
+"use client";
+
+import { FormEvent, useState } from "react";
 import { Space_Grotesk, Inter } from "next/font/google";
 
 const spaceGrotesk = Space_Grotesk({
@@ -10,125 +13,115 @@ const inter = Inter({
   weight: ["400", "500"],
 });
 
+type Status = "idle" | "sending" | "success" | "error";
+
 export default function Home() {
+  const [status, setStatus] = useState<Status>("idle");
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setStatus("sending");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      if (!response.ok) throw new Error("Request failed");
+
+      setForm({ name: "", email: "", message: "" });
+      setStatus("success");
+    } catch {
+      setStatus("error");
+    }
+  }
+
   return (
-    <main
-      style={{
-        minHeight: "100vh",
-        width: "100%",
-        background: "#F7F5F2",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        margin: 0,
-        padding: 0,
-      }}
-    >
-      <div
-        style={{
-          borderLeft: "2px solid #6B1F2A",
-          paddingLeft: "14px",
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
-        {/* Monogram */}
-        <div
-          className={spaceGrotesk.className}
-          style={{
-            fontSize: "56px",
-            lineHeight: "0.9",
-            fontWeight: 500,
-            letterSpacing: "-0.04em",
-            color: "#171717",
-          }}
-        >
-          AH
+    <main className="portfolio" id="contact">
+      <div className="contact-card">
+        <div className="identity">
+          <div className={`${spaceGrotesk.className} monogram`}>AH</div>
+          <div className={`${spaceGrotesk.className} name`}>Muhammad Ayyan Hassan</div>
+          <div className={`${inter.className} subtitle`}>
+            Portfolio — coming together deliberately.
+          </div>
+
+          <div className={`${inter.className} links`}>
+            <a href="https://www.linkedin.com/in/muhammad-ayyan-hassan/" target="_blank" rel="noopener noreferrer">
+              LinkedIn
+            </a>
+            <span>·</span>
+            <a href="https://github.com/MuhammadAyyanHassan" target="_blank" rel="noopener noreferrer">
+              GitHub
+            </a>
+            <span>·</span>
+            <a href="mailto:hassan.ayyan.muhammad@gmail.com">Email</a>
+          </div>
         </div>
 
-        {/* Name */}
-        <div
-          className={spaceGrotesk.className}
-          style={{
-            marginTop: "10px",
-            fontSize: "16px",
-            lineHeight: "1.2",
-            fontWeight: 500,
-            letterSpacing: "0.01em",
-            color: "#171717",
-          }}
-        >
-          Muhammad Ayyan Hassan
-        </div>
+        <div className="divider" />
 
-        {/* Subtitle */}
-        <div
-          className={inter.className}
-          style={{
-            marginTop: "5px",
-            fontSize: "11px",
-            lineHeight: "1.4",
-            color: "#888888",
-            letterSpacing: "0.02em",
-          }}
-        >
-          Portfolio — coming together deliberately.
-        </div>
+        <section className="contact-section" aria-labelledby="contact-heading">
+          <div className={`${spaceGrotesk.className} eyebrow`}>CONTACT</div>
+          <h1 id="contact-heading" className={spaceGrotesk.className}>
+            Have something to say?
+          </h1>
+          <p className={`${inter.className} intro`}>
+            Send a message directly. It will reach my inbox.
+          </p>
 
-        {/* Links */}
-        <div
-          className={inter.className}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "10px",
-            marginTop: "14px",
-            fontSize: "11px",
-            lineHeight: "1",
-          }}
-        >
-          <a
-            href="https://www.linkedin.com/in/muhammad-ayyan-hassan/"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={linkStyle}
-          >
-            LinkedIn
-          </a>
+          <form className={inter.className} onSubmit={handleSubmit}>
+            <label>
+              Name
+              <input
+                name="name"
+                value={form.name}
+                onChange={(event) => setForm({ ...form, name: event.target.value })}
+                required
+                maxLength={100}
+                autoComplete="name"
+              />
+            </label>
 
-          <span style={dotStyle}>·</span>
+            <label>
+              Email
+              <input
+                name="email"
+                type="email"
+                value={form.email}
+                onChange={(event) => setForm({ ...form, email: event.target.value })}
+                required
+                maxLength={254}
+                autoComplete="email"
+              />
+            </label>
 
-          <a
-            href="https://github.com/MuhammadAyyanHassan"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={linkStyle}
-          >
-            GitHub
-          </a>
+            <label>
+              Message
+              <textarea
+                name="message"
+                value={form.message}
+                onChange={(event) => setForm({ ...form, message: event.target.value })}
+                required
+                maxLength={5000}
+                rows={5}
+              />
+            </label>
 
-          <span style={dotStyle}>·</span>
+            <button type="submit" disabled={status === "sending"}>
+              {status === "sending" ? "Sending…" : "Send message"}
+            </button>
 
-          <a
-            href="https://mail.google.com/mail/?view=cm&fs=1&to=hassan.ayyan.muhammad@gmail.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={linkStyle}
-          >
-            Email
-          </a>
-        </div>
+            <div className="status" aria-live="polite">
+              {status === "success" && "Message sent. Thank you."}
+              {status === "error" && "Something went wrong. Please try again."}
+            </div>
+          </form>
+        </section>
       </div>
     </main>
   );
 }
-
-const linkStyle = {
-  color: "#555555",
-  textDecoration: "none",
-  cursor: "pointer",
-};
-
-const dotStyle = {
-  color: "#dedad4",
-};
