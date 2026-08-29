@@ -27,7 +27,7 @@ export default function Home() {
       <div
         style={{
           borderLeft: "1px solid #6B1F2A",
-          paddingLeft: "8px",
+          paddingLeft: "10px",
           display: "flex",
           flexDirection: "column",
         }}
@@ -36,7 +36,7 @@ export default function Home() {
         <div
           className={spaceGrotesk.className}
           style={{
-            fontSize: "20px",
+            fontSize: "32px",
             lineHeight: "1",
             fontWeight: 500,
             letterSpacing: "-0.03em",
@@ -50,8 +50,8 @@ export default function Home() {
         <div
           className={spaceGrotesk.className}
           style={{
-            marginTop: "5px",
-            fontSize: "7px",
+            marginTop: "6px",
+            fontSize: "10px",
             lineHeight: "1.2",
             fontWeight: 500,
             letterSpacing: "0.01em",
@@ -65,8 +65,8 @@ export default function Home() {
         <div
           className={inter.className}
           style={{
-            marginTop: "2px",
-            fontSize: "5px",
+            marginTop: "3px",
+            fontSize: "7px",
             lineHeight: "1.3",
             color: "#888888",
             letterSpacing: "0.02em",
@@ -81,9 +81,9 @@ export default function Home() {
           style={{
             display: "flex",
             alignItems: "center",
-            gap: "5px",
-            marginTop: "7px",
-            fontSize: "6px",
+            gap: "7px",
+            marginTop: "9px",
+            fontSize: "7px",
             lineHeight: "1",
           }}
         >
