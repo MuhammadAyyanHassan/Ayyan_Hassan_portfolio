@@ -10,22 +10,44 @@ type Status = "idle" | "sending" | "success" | "error";
 
 export default function Home() {
   const [status, setStatus] = useState<Status>("idle");
+  const [statusMessage, setStatusMessage] = useState("");
   const [form, setForm] = useState({ name: "", email: "", message: "" });
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
+    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
+      setStatus("error");
+      setStatusMessage("Please complete all fields with non-whitespace text.");
+      return;
+    }
+
     setStatus("sending");
+    setStatusMessage("");
+
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
-      if (!response.ok) throw new Error("Request failed");
+
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(
+          typeof result.error === "string" ? result.error : "The message could not be sent right now.",
+        );
+      }
+
       setForm({ name: "", email: "", message: "" });
       setStatus("success");
-    } catch {
+      setStatusMessage("Message sent. Thank you.");
+    } catch (error) {
       setStatus("error");
+      setStatusMessage(
+        error instanceof Error ? error.message : "Something went wrong. Please try again.",
+      );
     }
   }
 
@@ -106,8 +128,7 @@ export default function Home() {
             <label>Message<textarea name="message" value={form.message} onChange={(event) => setForm({ ...form, message: event.target.value })} required maxLength={5000} rows={5} /></label>
             <button type="submit" disabled={status === "sending"}>{status === "sending" ? "Sending…" : "Send message"}</button>
             <div className="status" aria-live="polite">
-              {status === "success" && "Message sent. Thank you."}
-              {status === "error" && "Something went wrong. Please try again."}
+              {(status === "success" || status === "error") && statusMessage}
             </div>
           </form>
         </section>
