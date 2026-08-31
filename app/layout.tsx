@@ -10,6 +10,14 @@ export const metadata = {
     description: "Web application security work, evidence, reasoning, and case studies.",
     type: "website",
     url: "https://ayyan-hassan-portfolio.vercel.app/",
+    images: [
+      {
+        url: "/og.svg",
+        width: 1200,
+        height: 630,
+        alt: "Muhammad Ayyan Hassan — Security Portfolio",
+      },
+    ],
   },
 };
 
