@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#F7F5F2"/>
+  <rect x="72" y="72" width="486" height="486" fill="#171717"/>
+  <text x="315" y="365" text-anchor="middle" font-family="Arial, sans-serif" font-size="180" font-weight="700" fill="#F7F5F2">AH</text>
+  <text x="620" y="255" font-family="Arial, sans-serif" font-size="58" font-weight="700" fill="#171717">Muhammad Ayyan Hassan</text>
+  <text x="620" y="335" font-family="Arial, sans-serif" font-size="34" fill="#6B1F2A">SECURITY / WEB APPLICATIONS</text>
+  <text x="620" y="405" font-family="Arial, sans-serif" font-size="28" fill="#171717">Evidence. Reasoning. Vulnerability research.</text>
+</svg>
