@@ -42,7 +42,8 @@ export default function Home() {
             <a href="#work">Work</a><span>·</span>
             <a href="#about">About</a><span>·</span>
             <a href="#contact">Contact</a><span>·</span>
-            <a href="https://github.com/MuhammadAyyanHassan" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://github.com/MuhammadAyyanHassan" target="_blank" rel="noopener noreferrer">GitHub</a><span>·</span>
+            <a href="https://www.linkedin.com/in/muhammad-ayyan-hassan/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           </nav>
         </header>
 
