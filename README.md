@@ -4,6 +4,8 @@ A personal portfolio focused on web application security work, the evidence behi
 
 **Live site:** https://ayyan-hassan-portfolio.vercel.app/
 
+**Demo video:** https://drive.google.com/file/d/1Hh46s-fWuV6vJdVaUVUjC5R3qxgsra5O/view?usp=sharing
+
 ## What it does
 
 The portfolio gives a visitor a short path from **claim → proof → contact**:
@@ -112,35 +114,36 @@ Deployment: Vercel
 
 ## v2 evaluation / hardening result
 
-The portfolio was deliberately tested beyond the happy path before this final documentation pass. The structured hardening review received a **PASS** verdict. The review covered empty and malformed form input, whitespace-only input, invalid email, rapid double submission, script-like text, input boundaries, special characters, Unicode, submission/refresh behavior, API method rejection, Edge/narrow layouts, links, findability, social preview, PageSpeed mobile/desktop evidence, and final mobile behavior. fileciteturn12file0L1-L24
+The portfolio was tested beyond the happy path before the final documentation pass. The structured hardening review received a **PASS** verdict. Coverage included empty and malformed form input, whitespace-only input, invalid email, rapid double submission, script-like text, input boundaries, special characters, Unicode, submission/refresh behavior, API method rejection, narrow layouts, links, findability, social preview, PageSpeed mobile/desktop evidence, and final mobile behavior.
 
 Two concrete fix-now findings were addressed:
 
 1. **Whitespace-only validation feedback:** the form was changed so a validation problem produces explicit guidance rather than a vague generic failure.
-2. **Social-share preview:** an explicit preview image and metadata were added and subsequently checked.
+2. **Social-share preview:** explicit preview image and metadata were added and checked.
 
-The senior review concluded that the current portfolio scope has a strong reliability baseline and that the identified fix-now issues were addressed. fileciteturn12file4L1-L20
+This is a practical hardening review, not a claim of a complete security audit.
 
 ## Known limitations
 
-- **No dedicated rate limiting / anti-spam layer:** the public contact endpoint has validation and length limits, but this is future hardening work.
+- **No dedicated rate limiting / anti-spam layer:** the public contact endpoint has validation and length limits, but this remains future production-hardening work.
 - **Search-result association:** search engines may surface the LinkedIn profile prominently for a personal-name query; this is an indexing observation rather than a portfolio functionality defect.
-- **FlyRank badge:** pending because the capstone is under review; it is an external status dependency rather than a site defect. fileciteturn12file0L25-L29
-
-This review should not be interpreted as a complete security audit. It is a practical hardening review appropriate to the scope of a personal portfolio.
+- **FlyRank launch requirements:** the final FlyRank custom-domain, graduate-badge, and showcase status are external submission/launch requirements and should not be treated as complete until independently verified.
 
 ## AI-use disclosure
 
 AI was used as a development and review partner during the project. ChatGPT and Claude were used for planning, implementation assistance, critique, documentation, and review. I remained responsible for the final decisions and manually checked the live portfolio, functionality, links, mobile behavior, and contact flow before treating the work as ready.
 
-The portfolio's factual security evidence is based on real project captures rather than AI-generated stand-ins. AI-generated imagery was intentionally limited to connective homepage atmosphere, while real captures were retained for actual security work. fileciteturn12file6L1-L12
+The portfolio's factual security evidence is based on real project captures rather than AI-generated stand-ins. AI-generated imagery was intentionally limited to connective homepage atmosphere, while real captures were retained for actual security work.
 
 ## Demo
 
-**Demo video:** To be added after the final Drive upload.
+The recorded demo shows the live portfolio and its end-to-end behavior. The permanent Drive link is provided at the top of this README. The video itself is not stored in GitHub.
 
-The recorded demo shows the live portfolio and its end-to-end behavior. The final submission will use the permanent Drive URL once the upload is complete.
+## Related documentation
+
+- [Retrospective](docs/RETROSPECTIVE.md)
+- [Reviewer Context](docs/REVIEWER_CONTEXT.md)
 
 ## Status
 
-The portfolio is live and the Week 7 hardening checkpoint passed. Remaining final-package work is documentation packaging, the demo URL insertion, final launch/domain requirements, and submission administration.
+The portfolio codebase contains the live site, working contact-flow implementation, hardening documentation, retrospective, and reviewer context. Final FlyRank launch administration remains dependent on external verification of the custom domain, graduate badge, showcase submission, and final checkpoint.
